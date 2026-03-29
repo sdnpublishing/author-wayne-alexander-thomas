@@ -61,7 +61,57 @@ section{padding:3.5rem 2rem}.si{max-width:1100px;margin:0 auto}.sec-alt{backgrou
 footer{background:#090909;color:rgba(255,255,255,.28);padding:2rem;text-align:center;font-size:.72rem;letter-spacing:.04em;line-height:1.9}footer a{color:rgba(255,255,255,.42)}
 #bl{padding:2rem;text-align:center;color:#aaa;font-size:.83rem}
 @media(max-width:620px){.nl{display:none}.bg{grid-template-columns:repeat(2,1fr)}.hi{padding:3.5rem 1.5rem}}
+
+.bco{position:relative}
+.pin-btn{position:absolute;top:8px;left:8px;background:#e60023;color:#fff;border:none;border-radius:4px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;opacity:0;transition:opacity .2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px;z-index:10;font-family:sans-serif}
+.bk:hover .pin-btn{opacity:1}
+
+.sdn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-bottom:1rem}
+.sdn-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:4px;padding:.9rem;display:flex;gap:.8rem;align-items:center;text-decoration:none;transition:all .18s;color:inherit}
+.sdn-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.1);transform:translateY(-1px)}
+.sdn-av{width:40px;height:40px;border-radius:50%;background:#1a1208;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid #c8963e;color:#c8963e;font-family:'Playfair Display',serif;font-size:.8rem;font-weight:700}
+.sdn-name{font-size:.82rem;font-weight:700;color:#1a1208;margin-bottom:.15rem}
+.sdn-genre{font-size:.7rem;color:#7a6540}
+.sdn-cnt{font-size:.68rem;color:#aaa;margin-top:.1rem}
+.sdn-hub-link{display:inline-block;padding:.5rem 1.4rem;background:#1a1208;color:#c8963e;text-decoration:none;border-radius:3px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .18s}
+.sdn-hub-link:hover{background:#c8963e;color:#fff}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Wayne Alexander Thomas",
+      "url": "https://sdnpublishing.github.io/author-wayne-alexander-thomas/",
+      "description": "Independent author publishing in Psychology & Self-Help",
+      "sameAs": [
+        "https://www.amazon.co.uk/s?k=Wayne+Alexander+Thomas"
+      ]
+    },
+    {
+      "@type": "Book",
+      "name": "Inspirational Confluence: The Merging Streams of Motivation and Leadership",
+      "author": {
+        "@type": "Person",
+        "name": "Wayne Alexander Thomas"
+      },
+      "url": "https://www.amazon.co.uk/dp/B0D9BYDPR1",
+      "workExample": {
+        "@type": "Book",
+        "bookFormat": "https://schema.org/EBook",
+        "potentialAction": {
+          "@type": "ReadAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.amazon.co.uk/dp/B0D9BYDPR1"
+          }
+        }
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="sdn-bar"><span class="sdn-logo">SDN Publishing</span><a href="https://sdnpublishing.github.io/sdn-publishing/" target="_blank">← SDN Publishing Hub</a></div>
@@ -80,7 +130,7 @@ footer{background:#090909;color:rgba(255,255,255,.28);padding:2rem;text-align:ce
 </div></div>
 <section id="books" class="sec-alt"><div class="si">
 <p class="sl">Published Works</p><h2 class="sh">All <em>Books</em></h2>
-<div class="bg"><div class="bk"><div class="bco"><img src="https://images-na.ssl-images-amazon.com/images/P/B0D9BYDPR1.01._SL500_.jpg" alt="" loading="lazy" onerror="this.parentElement.style.background='#1a1208'"/></div><div class="bbd"><div class="bbt">Inspirational Confluence</div><div class="bfmts"><a class="edbtn" href="https://www.amazon.co.uk/dp/B0D9BYDPR1" target="_blank" rel="noopener">Kindle</a><a class="edbtn" href="https://www.amazon.co.uk/dp/B0D9BS9G9F" target="_blank" rel="noopener">Paperback</a></div></div></div></div>
+<div class="bg"><div class="bk"><div class="bco"><img src="https://images-na.ssl-images-amazon.com/images/P/B0D9BYDPR1.01._SL500_.jpg" alt="" loading="lazy" onerror="this.parentElement.style.background='#1a1208'"/><a class="pin-btn" href="https://pinterest.com/pin/create/button/?url=https://sdnpublishing.github.io/author-wayne-alexander-thomas/&amp;media=https://images-na.ssl-images-amazon.com/images/P/B0D9BYDPR1.01._SL500_.jpg&amp;description=Wayne Alexander Thomas" target="_blank" rel="noopener" title="Save to Pinterest">&#x2665; Save</a></div><div class="bbd"><div class="bbt">Inspirational Confluence</div><div class="bfmts"><a class="edbtn" href="https://www.amazon.co.uk/dp/B0D9BYDPR1?tag=YOURTAG-21" target="_blank" rel="noopener">Kindle</a><a class="edbtn" href="https://www.amazon.co.uk/dp/B0D9BS9G9F?tag=YOURTAG-21" target="_blank" rel="noopener">Paperback</a></div></div></div></div>
 <div style="text-align:center;margin-top:1.6rem"><a class="btn bp" href="https://www.amazon.co.uk/s?k=Wayne+Alexander+Thomas" target="_blank" rel="noopener">All Books on Amazon →</a></div>
 </div></section>
 <section id="blog"><div class="si">
@@ -129,4 +179,46 @@ function nlS(){
 }
 lp();
 </script>
+<section style="background:#f5f0e8;padding:2.5rem 1.5rem">
+<div style="max-width:900px;margin:0 auto">
+  <p style="color:#c8963e;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem">From the SDN Network</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;margin-bottom:1.2rem;color:#1a1208">You Might Also <em style="color:#c8963e;font-style:normal">Enjoy</em></h2>
+  <div class="sdn-grid"><a href="https://sdnpublishing.github.io/author-abbie-callie-bell/" class="sdn-card" target="_blank" rel="noopener">
+  <div class="sdn-av">AC</div>
+  <div class="sdn-info">
+    <div class="sdn-name">Abbie Callie Bell</div>
+    <div class="sdn-genre">Spirituality & Occult</div>
+    <div class="sdn-cnt">3 titles</div>
+  </div>
+</a><a href="https://sdnpublishing.github.io/author-aria-harper-solis/" class="sdn-card" target="_blank" rel="noopener">
+  <div class="sdn-av">AH</div>
+  <div class="sdn-info">
+    <div class="sdn-name">Aria Harper Solis</div>
+    <div class="sdn-genre">Starseed & Cosmic</div>
+    <div class="sdn-cnt">3 titles</div>
+  </div>
+</a><a href="https://sdnpublishing.github.io/author-athena-cassie-ellen/" class="sdn-card" target="_blank" rel="noopener">
+  <div class="sdn-av">AC</div>
+  <div class="sdn-info">
+    <div class="sdn-name">Athena Cassie Ellen</div>
+    <div class="sdn-genre">Psychology & Self-Help</div>
+    <div class="sdn-cnt">29 titles</div>
+  </div>
+</a><a href="https://sdnpublishing.github.io/author-carey-lee-james/" class="sdn-card" target="_blank" rel="noopener">
+  <div class="sdn-av">CL</div>
+  <div class="sdn-info">
+    <div class="sdn-name">Carey Lee James</div>
+    <div class="sdn-genre">Starseed & Cosmic</div>
+    <div class="sdn-cnt">12 titles</div>
+  </div>
+</a></div>
+  <div style="text-align:center;margin-top:1.2rem">
+    <a href="https://sdnpublishing.github.io/sdn-publishing/" class="sdn-hub-link" target="_blank" rel="noopener">Explore All 34 SDN Authors &rarr;</a>
+  </div>
+</div>
+</section>
+<p style="font-size:.68rem;color:#aaa;text-align:center;padding:.8rem 1.5rem;background:#1a1208;margin:0;color:rgba(255,255,255,.4)">
+As an Amazon Associate, SDN Publishing earns from qualifying purchases. &nbsp;|&nbsp; 
+<a href="https://sdnpublishing.github.io/sdn-publishing/" style="color:#c8963e">Explore all 34 SDN authors &rarr;</a>
+</p>
 </body></html>
