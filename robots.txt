@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sdnpublishing.github.io/author-wayne-alexander-thomas/sitemap.xml
