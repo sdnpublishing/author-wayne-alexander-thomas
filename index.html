@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="Wayne Alexander Thomas — independent author publishing 1 title in Psychology & Self-Help. Available on Amazon and Kindle Unlimited.">
+  <meta name="description" content="Wayne Alexander Thomas — independent author publishing 1 title in Psychology &amp; Self-Help. Available on Amazon and Kindle Unlimited.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://sdnpublishing.github.io/author-wayne-alexander-thomas/">
   <meta property="og:title" content="Wayne Alexander Thomas — SDN Publishing">
-  <meta property="og:description" content="Wayne Alexander Thomas — independent author publishing 1 title in Psychology & Self-Help. Available on Amazon and Kindle Unlimited.">
+  <meta property="og:description" content="Wayne Alexander Thomas — independent author publishing 1 title in Psychology &amp; Self-Help. Available on Amazon and Kindle Unlimited.">
   <meta property="og:url" content="https://sdnpublishing.github.io/author-wayne-alexander-thomas/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SDN Publishing">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Wayne Alexander Thomas — SDN Publishing">
-  <meta name="twitter:description" content="Wayne Alexander Thomas — independent author publishing 1 title in Psychology & Self-Help. Available on Amazon and Kindle Unlimited.">
+  <meta name="twitter:description" content="Wayne Alexander Thomas — independent author publishing 1 title in Psychology &amp; Self-Help. Available on Amazon and Kindle Unlimited.">
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Wayne Alexander Thomas | Psychology & Self-Help Books | SDN Publishing</title>
 
@@ -120,7 +120,7 @@ footer{background:#090909;color:rgba(255,255,255,.28);padding:2rem;text-align:ce
 </div></nav>
 <div class="hero"><div class="hbg"></div><div class="hi">
 <div class="av">WA</div>
-<p class="hero-genre">Psychology & Self-Help</p>
+<p class="hero-genre">Psychology &amp; Self-Help</p>
 <h1>Wayne Alexander Thomas</h1>
 <p class="hbio">Wayne Alexander Thomas is an organisational psychologist and leadership development consultant who has worked with executive teams across the financial services, technology, and public sectors. Inspirational Confluence draws directly on that practice to examine the specific psychological mechanisms that separate leaders who inspire genuine commitment from those who generate only compliance. He writes with the practitioner's preference for what works over what sounds good.</p>
 <div class="hstat">
@@ -136,17 +136,16 @@ footer{background:#090909;color:rgba(255,255,255,.28);padding:2rem;text-align:ce
 <p class="sl">From the Author</p><h2 class="sh">Latest <em>Articles</em></h2>
 <div id="bl">Loading articles…</div><div class="blog-grid" id="bg"></div>
 </div></section>
-<div class="nl-wrap" id="newsletter">
+<div class="nl-wrap" id="newsletter" style="display:none">
 <h3>Stay in the Loop</h3>
 <p class="sub">New articles and book releases sent to your inbox. Unsubscribe any time with one click.</p>
-<div class="nl-row"><input type="email" id="nem" placeholder="your@email.com"/><button onclick="nlS()">Subscribe</button></div>
-<div class="nl-note">We use Mailchimp for mailing. <a href="https://mailchimp.com/legal/privacy/" target="_blank" rel="noopener">Privacy policy</a>. Every email includes a one-click unsubscribe link.</div>
+<label class="nl-consent" style="display:block;font-size:.72rem;color:#8a7a5a;margin:.5rem 0"><input type="checkbox" id="nlc" style="margin-right:.4rem">I agree to receive occasional emails about new releases and articles. Unsubscribe any time.</label><div class="nl-row"><input type="email" id="nem" placeholder="your@email.com"/><button onclick="nlS()">Subscribe</button></div>
+<div class="nl-note">We use Brevo to send emails. <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener">Privacy policy</a>. Every email includes a one-click unsubscribe link.</div>
 <div class="nl-ok" id="nlok">✓ Please check your inbox to confirm your subscription.</div>
 </div>
 <footer><p>Wayne Alexander Thomas · <a href="https://sdnpublishing.github.io/sdn-publishing/">SDN Publishing</a> · <a href="mailto:sdn.retro@gmail.com">sdn.retro@gmail.com</a></p><p style="margin-top:.3rem">© 2026 SDN Publishing. All rights reserved.</p></footer>
 <script>
 const PU='https://raw.githubusercontent.com/sdnpublishing/author-wayne-alexander-thomas/main/posts.json';
-const MC='REPLACE_WITH_MAILCHIMP_FORM_ACTION_URL';
 async function lp(){
   const bg=document.getElementById('bg'),bl=document.getElementById('bl'),ac=document.getElementById('acnt');
   try{
@@ -165,21 +164,30 @@ async function lp(){
   }catch(e){bl.innerHTML='<span style="color:#c0392b">Unable to load articles right now.</span>';}
 }
 function tog(i){document.getElementById('pb'+i).classList.toggle('open');document.getElementById('a'+i).classList.toggle('open');}
-function nlS(){
-  const e=document.getElementById('nem');
-  if(!e||!e.value.includes('@'))return;
-  if(MC==='REPLACE_WITH_MAILCHIMP_FORM_ACTION_URL'){
-    document.getElementById('nlok').style.display='block';
-    document.getElementById('nlok').textContent='⚠ Newsletter setup pending. Email us at sdn.retro@gmail.com';
-    return;
-  }
-  const fd=new FormData();fd.append('EMAIL',e.value);
-  fetch(MC,{method:'POST',body:fd,mode:'no-cors'}).then(()=>{document.getElementById('nlok').style.display='block';e.value='';});
+const NLCFG='https://raw.githubusercontent.com/sdnpublishing/sdn-publishing/main/newsletter.json';
+let NL_ENDPOINT='';
+fetch(NLCFG,{cache:'no-store'}).then(r=>r.json()).then(c=>{NL_ENDPOINT=(c&&c.endpoint)||'';const s=document.getElementById('newsletter');if(s)s.style.display=NL_ENDPOINT?'':'none';}).catch(()=>{});
+async function nlS(){
+  const e=document.getElementById('nem'),ok=document.getElementById('nlok'),cb=document.getElementById('nlc');
+  if(!e||!e.value.includes('@')||!NL_ENDPOINT)return;
+  if(cb&&!cb.checked){ok.style.display='block';ok.textContent='Please tick the consent box first.';return;}
+  try{
+    const r=await fetch(NL_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value.trim(),author:"Wayne Alexander Thomas",slug:"wayne-alexander-thomas",site:location.origin+location.pathname,consent:true})});
+    const j=await r.json().catch(()=>({}));
+    ok.style.display='block';
+    ok.textContent=j.ok?(j.doi?'✓ Check your inbox to confirm your subscription.':'✓ Subscribed — new releases from this author will reach you first.'):'Something went wrong — please try again later.';
+    if(j.ok)e.value='';
+  }catch(_){ok.style.display='block';ok.textContent='Something went wrong — please try again later.';}
 }
-if(MC.indexOf('REPLACE_WITH')>-1){var _ns=document.getElementById('newsletter');if(_ns)_ns.style.display='none';}
 lp();
 </script>
 
 <section style="background:#f5f0e8;padding:2.5rem 1.5rem"><div style="max-width:900px;margin:0 auto"><p style="color:#c8963e;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem">From the SDN Network</p><h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;margin-bottom:1.2rem;color:#1a1208">You Might Also <em style="color:#c8963e;font-style:normal">Enjoy</em></h2><div class="sdn-grid"><a href="https://sdnpublishing.github.io/author-abbie-callie-bell/" class="sdn-card" target="_blank" rel="noopener"><div class="sdn-av">AC</div><div><div class="sdn-name">Abbie Callie Bell</div><div class="sdn-genre">Spirituality & Occult</div><div class="sdn-cnt">1 title</div></div></a><a href="https://sdnpublishing.github.io/author-aria-harper-solis/" class="sdn-card" target="_blank" rel="noopener"><div class="sdn-av">AH</div><div><div class="sdn-name">Aria Harper Solis</div><div class="sdn-genre">Starseed & Cosmic</div><div class="sdn-cnt">1 title</div></div></a><a href="https://sdnpublishing.github.io/author-athena-cassie-ellen/" class="sdn-card" target="_blank" rel="noopener"><div class="sdn-av">AC</div><div><div class="sdn-name">Athena Cassie Ellen</div><div class="sdn-genre">Psychology & Self-Help</div><div class="sdn-cnt">14 titles</div></div></a><a href="https://sdnpublishing.github.io/author-carey-lee-james/" class="sdn-card" target="_blank" rel="noopener"><div class="sdn-av">CL</div><div><div class="sdn-name">Carey Lee James</div><div class="sdn-genre">Starseed & Cosmic</div><div class="sdn-cnt">5 titles</div></div></a></div><div style="text-align:center;margin-top:1.2rem"><a href="https://sdnpublishing.github.io/sdn-publishing/" class="sdn-hub-link" target="_blank" rel="noopener">Explore All 46 SDN Authors &rarr;</a></div></div></section>
 <p style="font-size:.68rem;text-align:center;padding:.8rem 1.5rem;background:#1a1208;margin:0;color:rgba(255,255,255,.4)">As an Amazon Associate, SDN Publishing earns from qualifying purchases.&nbsp;|&nbsp;<a href="https://sdnpublishing.github.io/sdn-publishing/" style="color:#c8963e">Explore all 46 SDN authors &rarr;</a></p>
+<script>
+(function(){var C='https://raw.githubusercontent.com/sdnpublishing/sdn-publishing/main/newsletter.json';
+function rw(go){document.querySelectorAll('a[href*="amazon.co.uk"]').forEach(function(a){if(a.dataset.geo)return;var h=a.getAttribute('href');
+var m=h.match(/\/dp\/([A-Z0-9]{10})/),s=h.match(/[?&]k=(\d{13})/);if(m)a.href=go+'/go/'+m[1]+'?src=site';else if(s)a.href=go+'/go/isbn/'+s[1]+'?src=site';else return;a.dataset.geo='1';});}
+fetch(C,{cache:'no-store'}).then(function(r){return r.json()}).then(function(c){if(!c||!c.go)return;var go=c.go.replace(/\/$/,'');rw(go);setTimeout(function(){rw(go)},1500);setTimeout(function(){rw(go)},4000);}).catch(function(){});})();
+</script>
 </body></html>
